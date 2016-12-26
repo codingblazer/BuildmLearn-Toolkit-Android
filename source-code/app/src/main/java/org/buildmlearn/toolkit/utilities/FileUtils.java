@@ -1,8 +1,10 @@
 package org.buildmlearn.toolkit.utilities;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 
 import android.content.res.AssetManager;
+import android.os.Build;
 
 
 import org.w3c.dom.Document;
@@ -56,6 +58,7 @@ public class FileUtils {
      * @throws IOException Exception thrown in case of some error.
      * @brief Unzips a compressed file (.zip, .apk)
      */
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void unZip(InputStream zipInputStream, String destinationFolder) {
         int size;
         byte[] buffer = new byte[BUFFER_SIZE];
