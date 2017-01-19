@@ -736,6 +736,13 @@ public class TemplateEditor extends AppCompatActivity {
                     Toast.makeText(this, "Unable to perform action: Add Meta Details", Toast.LENGTH_SHORT).show();
                     return null;
                 }
+
+                if(templateId==7 && selectedTemplate.getItems(doc).size() == 2)
+                {
+                    Toast.makeText(this,"Please enter atleast 2 items",Toast.LENGTH_SHORT).show();
+                    return null;
+                }
+
                 for (Element item : selectedTemplate.getItems(doc)) {
                     dataElement.appendChild(item);
                 }
@@ -815,12 +822,18 @@ public class TemplateEditor extends AppCompatActivity {
             doc.appendChild(rootElement);
             Element dataElement = doc.createElement("data");
             rootElement.appendChild(dataElement);
+
             if (selectedTemplate.getItems(doc).size() == 0) {
                 Toast.makeText(this, "Unable to perform action: No Data", Toast.LENGTH_SHORT).show();
                 return null;
             }
             if (selectedTemplate.getItems(doc).get(0).getTagName().equals("item") && (templateId == 5 || templateId == 7)) {
                 Toast.makeText(this, "Unable to perform action: No Meta Details", Toast.LENGTH_SHORT).show();
+                return null;
+            }
+            if(templateId == 7 && selectedTemplate.getItems(doc).size() == 2)
+            {
+                Toast.makeText(this,"Please enter atleast 2 items",Toast.LENGTH_SHORT).show();
                 return null;
             }
             for (Element item : selectedTemplate.getItems(doc)) {
